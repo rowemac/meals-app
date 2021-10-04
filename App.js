@@ -4,9 +4,9 @@ import * as Font from 'expo-font'
 import AppLoading from 'expo-app-loading';
 
 const fetchFonts = () => {
-  Font.loadAsync({
-    'open-sans': require('./assets/font/OpenSans-Regular.ttf'),
-    'open-sans-bold': ('./assets/fonts/OpenSans-Bold.ttf')
+  return Font.loadAsync({
+    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
   });
 };
 
