@@ -9,8 +9,11 @@ const CategoriesScreen = props => {
                 props.navigation.navigate({
                     routeName: 'CategoryMeals'
                 });
-                // props.navigation.push('Category Meals') -- can also use this 
+                // props.navigation.push('Category Meals') -- can also use this -- pushes to the same page possibly with different content
             }} />
+            {/* <Button title="Go Back" onPress={() => {
+                props.navigation.goBack(); 
+            }} /> */}
         </View>
     )
 }; 
