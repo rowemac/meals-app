@@ -1,20 +1,15 @@
 import React from "react";
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, FlatList, StyleSheet } from 'react-native';
+
+import { CATEGORIES } from "../data/dummy-data";
+
+const renderGridItem = (itemData) => {
+    return <View><Text>{itemData.item.title}</Text></View>
+};
 
 const CategoriesScreen = props => {
     return (
-        <View style={styles.screen}>
-            <Text>The Categories Screen</Text>
-            <Button title="Go to Meals" onPress={() => {
-                props.navigation.navigate({
-                    routeName: 'CategoryMeals'
-                });
-                // props.navigation.push('Category Meals') -- can also use this -- pushes to the same page possibly with different content
-            }} />
-            {/* <Button title="Go Back" onPress={() => {
-                props.navigation.goBack(); 
-            }} /> */}
-        </View>
+        <FlatList data={CATEGORIES} renderItem={} numColumns={2} />
     )
 }; 
 
