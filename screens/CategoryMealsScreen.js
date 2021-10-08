@@ -1,16 +1,14 @@
 import React from "react";
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 
-import { CATEGORIES } from '../data/dummy-data';
-import { MEALS } from '../data/dummy-data';
+import { CATEGORIES, MEALS } from '../data/dummy-data';
+import MealItem from "../components/MealItem";
 
 const CategoryMealScreen = props => {
 
     const renderMealItem = itemData => {
         return (
-        <View>
-            <Text>{itemData.item.title}</Text>
-        </View>
+            <MealItem title={itemData.item.title} onSelectMeal={() => {}} />
         );
     };
 
