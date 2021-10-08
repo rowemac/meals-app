@@ -43,8 +43,7 @@ const styles = StyleSheet.create({
     },
 
     mealHeader: {
-        height: '85%',
-
+        height: '85%'
     },
 
     mealDetail: {
