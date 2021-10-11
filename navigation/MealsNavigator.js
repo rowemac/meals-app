@@ -45,7 +45,8 @@ const tabScreenConfig = {
                         color={tabInfo.tintColor} 
                     />
                 ); 
-            }
+            },
+            tabBarColor: Colors.primaryColor
         }
     }, 
     Favorites: { 
@@ -60,14 +61,15 @@ const tabScreenConfig = {
                     color={tabInfo.tintColor} 
                 />
             ); 
-        }
+        },
+        tabBarColor: Colors.accentColor
     }}
 }
 
 const MealsFavTabNavigator = 
     Platform.OS ==='android' 
     ? createMaterialBottomTabNavigator(tabScreenConfig, {
-        activeColor: Colors.accentColor,
+        activeColor: 'white',
         shifting: true
     })
     : createBottomTabNavigator(tabScreenConfig, {
