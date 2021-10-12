@@ -1,6 +1,6 @@
 import React from "react";
 import { CATEGORIES, MEALS } from '../data/dummy-data';
-import MealList from "../components/MealItem";
+import MealList from "../components/MealList";
 
 const CategoryMealScreen = props => {
     const catId = props.navigation.getParam('categoryId');
@@ -10,7 +10,7 @@ const CategoryMealScreen = props => {
     ); 
 
     return (
-        <MealList lisData={displayedMeals} navigation={props.navigation} /> 
+        <MealList listData={displayedMeals} navigation={props.navigation} /> 
     ); 
 }; 
 
