@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { View, Text, StyleSheet, Switch, Platform } from 'react-native';
 import HeaderButton from '../components/HeaderButton';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'; 
@@ -18,12 +18,14 @@ const FilterSwitch = props => {
 };
 
 const FiltersScreen = props => {
+    const { navigation } = props; 
+
     const [isGlutenFree, setIsGlutenFree] = useState(false);
     const [isLactoseFree, setIsLactoseFree] = useState(false);
     const [isVegan, setIsVegan] = useState(false);
     const [isVegetarian, setIsVegetarian] = useState(false);
 
-    const saveFilters = () => {
+    const saveFilters = useCallback(() => {
         const appliedFilters = {
             glutenFree: isGlutenFree, 
             lactoseFree: isLactoseFree, 
@@ -31,11 +33,11 @@ const FiltersScreen = props => {
             vegetarian: isVegetarian
         }; 
         console.log(appliedFilters)
-    };
+    }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian]);
 
     useEffect (() => {
-        props.navigation.setParams({save: saveFilters});
-    })
+        navigation.setParams({save: saveFilters});
+    }, [saveFilters]) // won't rerun the effect with destructuring of navigation
 
     return (
         <View style={styles.screen}>
@@ -83,9 +85,7 @@ FiltersScreen.navigationOptions = navData => {
                 <Item 
                     title="Save" 
                     iconName='ios-save' 
-                    onPress={() => {
-                        navData.navigation.getParam('save');
-                    }} 
+                    onPress={navData.navigation.getParam('save')}
                 />
             </HeaderButtons>
         )
