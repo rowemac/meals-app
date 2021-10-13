@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Switch, Platform } from 'react-native';
 import HeaderButton from '../components/HeaderButton';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'; 
@@ -22,6 +22,20 @@ const FiltersScreen = props => {
     const [isLactoseFree, setIsLactoseFree] = useState(false);
     const [isVegan, setIsVegan] = useState(false);
     const [isVegetarian, setIsVegetarian] = useState(false);
+
+    const saveFilters = () => {
+        const appliedFilters = {
+            glutenFree: isGlutenFree, 
+            lactoseFree: isLactoseFree, 
+            vegan: isVegan, 
+            vegetarian: isVegetarian
+        }; 
+        console.log(appliedFilters)
+    };
+
+    useEffect (() => {
+        props.navigation.setParams({save: saveFilters});
+    })
 
     return (
         <View style={styles.screen}>
@@ -53,7 +67,7 @@ const FiltersScreen = props => {
 FiltersScreen.navigationOptions = navData => {
     return {
         headerTitle: 'Filter Meals',
-        headerLeft: () =>
+        headerLeft: ( 
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <Item 
                     title="Menu" 
@@ -63,6 +77,18 @@ FiltersScreen.navigationOptions = navData => {
                     }} 
                 />
             </HeaderButtons>
+        ),
+        headerRight: (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item 
+                    title="Save" 
+                    iconName='ios-save' 
+                    onPress={() => {
+                        navData.navigation.getParam('save');
+                    }} 
+                />
+            </HeaderButtons>
+        )
     }
 }; 
 
@@ -75,7 +101,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        width: '80%'
+        width: '80%',
+        marginVertical: 15
     },
     title: {
         fontFamily: 'open-sans-bold',
