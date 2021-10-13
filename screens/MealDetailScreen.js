@@ -79,6 +79,12 @@ const styles = StyleSheet.create({
         borderColor: '#ccc',
         borderWidth: 1,
         padding: 10
+    },
+    title: {
+        fontFamily: 'open-sans-bold',
+        textAlign: 'center',
+        fontSize: 20
+
     }
 });
 
